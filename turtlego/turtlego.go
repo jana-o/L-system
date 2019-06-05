@@ -1,7 +1,7 @@
 package turtlego
 
 import (
-	"code/lsystem-v2/ls"
+	"code/lsystem-v3/ls"
 	"fmt"
 	"image"
 	"image/color"
@@ -73,6 +73,9 @@ func ToImage(l *ls.Lsystem) image.Image {
 	image := image.NewRGBA(image.Rect(0, 0, 300, 300))
 	pos := Position{150.0, 150.0}
 	t := NewTurtleGo(image, pos)
+	// r := l.Result
+
+	// fmt.Println("enter toimage", r)
 
 	for i := 0; i < 2; i++ {
 		fields := strings.Fields("F F - F")

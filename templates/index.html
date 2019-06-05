@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>L-System</title>
+  </head>
+  <body>
+    <div>
+      <h3>Create your L-System</h3>
+      <div class="image">
+        <img src="public/pic/l-system.png" alt="lsystem" />
+      </div>
+      <button><a href="/create">Create</a></button>
+    </div>
+    <div>
+      <ul>
+        <li>Axiom: {{.Axiom}}</li>
+        <li>RuleLeft: {{.RuleLeft}}</li>
+        <li>RuleRight: {{.RuleRight}}</li>
+      </ul>
+      <p>Result: {{.Result}}</p>
+    </div>
+  </body>
+</html>

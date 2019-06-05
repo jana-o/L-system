@@ -6,9 +6,9 @@ import (
 
 func TestGenerate(t *testing.T) {
 	l := Lsystem{}
-	l.axiom = "F"
-	l.ruleLeft = "F"
-	l.ruleRight = "F+F"
+	l.Axiom = "F"
+	l.RuleLeft = "F"
+	l.RuleRight = "F+F"
 	y := l.Generate(2)
 	if y != "F+F+F+F" {
 		t.Error("expected F+F", "got", y)
@@ -17,9 +17,9 @@ func TestGenerate(t *testing.T) {
 
 func TestApplyRule(t *testing.T) {
 	l := Lsystem{}
-	l.axiom = "F"
-	l.ruleLeft = "F"
-	l.ruleRight = "FF"
+	l.Axiom = "F"
+	l.RuleLeft = "F"
+	l.RuleRight = "FF"
 
 	cases := []struct {
 		input string
