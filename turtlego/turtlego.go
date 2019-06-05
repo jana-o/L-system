@@ -1,7 +1,7 @@
 package turtlego
 
 import (
-	"code/lsystem-v3/ls"
+	"code/lsystem-v4/ls"
 	"fmt"
 	"image"
 	"image/color"
