@@ -31,8 +31,13 @@ func (t *TurtleGo) Push() {
 
 //Pop loads x,y coordinates and angle from stack
 func (t *TurtleGo) Pop() {
-	t.Pos = Position{t.Stack[0], t.Stack[1]}
-	t.Rotation = t.Stack[2]
+	if len(t.Stack) <= 3 {
+		t.Pos = Position{t.Stack[0], t.Stack[1]}
+		t.Rotation = t.Stack[2]
+	} else {
+		t.Pos = Position{t.Stack[len(t.Stack)-3], t.Stack[len(t.Stack)-2]}
+		t.Rotation = t.Stack[len(t.Stack)-1]
+	}
 }
 
 //Forward moves forward
@@ -98,8 +103,10 @@ func ToImage(l *ls.Lsystem) image.Image {
 			for j := 0; j < len(fields); j++ {
 				switch fields[j] {
 				case "F":
+					t.PenDown()
 					t.Forward(40.0)
 				case "+":
+					t.PenDown()
 					t.Rotate(math.Pi / 6)
 				case "-":
 					t.PenDown()
