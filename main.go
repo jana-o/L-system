@@ -7,13 +7,6 @@ import (
 	"net/http"
 )
 
-//Lsystem is a parallel rewriting system
-type Lsystem struct {
-	Axiom               string
-	RuleLeft, RuleRight string
-	Result              []string
-}
-
 func main() {
 
 	l := ls.NewLsystem("F", "F", "FF+[+F-F-F]-[-F+F+F]", []string{})

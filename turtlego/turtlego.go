@@ -88,12 +88,11 @@ func NewTurtleGo(i *image.RGBA, start Position) (t *TurtleGo) {
 //ToImage translates generated string into geometric structure and creates image of lsystem
 func ToImage(l *ls.Lsystem) image.Image {
 
-	image := image.NewRGBA(image.Rect(0, 0, 300, 300))
-	pos := Position{150.0, 300.0}
+	image := image.NewRGBA(image.Rect(0, 0, 1000, 1000))
+	pos := Position{500.0, 1000.0}
 	t := NewTurtleGo(image, pos)
 	r := l.Result[len(l.Result)-1]
-
-	fmt.Println("enter toimage", len(r))
+	d := 40.0
 
 	for i := 0; i < 1; i++ {
 		fields := strings.Split(r, "")
@@ -104,7 +103,7 @@ func ToImage(l *ls.Lsystem) image.Image {
 				switch fields[j] {
 				case "F":
 					t.PenDown()
-					t.Forward(40.0)
+					t.Forward(d * 0.7)
 				case "+":
 					t.PenDown()
 					t.Rotate(math.Pi / 6)
@@ -122,8 +121,15 @@ func ToImage(l *ls.Lsystem) image.Image {
 			}
 		}
 	}
+	// fmt.Println("enter toimage", len(r), t.Stack)
+
 	return image
 }
+
+//iteration 1
+//FF+[+F-F]-[-F+F]
+//iteration2
+//FF+[+F-F-F]-[-F+F+F]FF+[+F-F-F]-[-F+F+F]+[+FF+[+F-F-F]-[-F+F+F]-FF+[+F-F-F]-[-F+F+F]-FF+[+F-F-F]-[-F+F+F]]-[-FF+[+F-F-F]-[-F+F+F]+FF+[+F-F-F]-[-F+F+F]+FF+[+F-F-F]-[-F+F+F]
 
 //saveImage creates image file
 func saveImage(image image.Image, path string) {

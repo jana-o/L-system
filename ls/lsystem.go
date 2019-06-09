@@ -43,7 +43,7 @@ func (l *Lsystem) Generate() []string {
 
 	l.Result = append(l.Result, s)
 
-	fmt.Println("generate", l.Result, n)
+	fmt.Println("generate", l.Result[len(l.Result)-1], n)
 	return l.Result
 }
 
