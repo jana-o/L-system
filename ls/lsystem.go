@@ -14,7 +14,7 @@ func init() {
 	tpl = template.Must(template.ParseGlob("templates/index.html"))
 }
 
-//Lsystem is
+//Lsystem is a parallel rewriting system
 type Lsystem struct {
 	Axiom               string
 	RuleLeft, RuleRight string

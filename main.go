@@ -7,7 +7,7 @@ import (
 	"net/http"
 )
 
-//Lystem is a
+//Lsystem is a parallel rewriting system
 type Lsystem struct {
 	Axiom               string
 	RuleLeft, RuleRight string
