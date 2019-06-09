@@ -52,7 +52,6 @@ func (l *Lsystem) applyRule(r string) string {
 }
 
 func (l *Lsystem) ServeHTTP(w http.ResponseWriter, req *http.Request) {
-	// fmt.Println("Hi")
 	err := tpl.ExecuteTemplate(w, "index.html", l)
 	if err != nil {
 		http.Error(w, err.Error(), 500)

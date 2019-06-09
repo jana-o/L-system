@@ -9,7 +9,7 @@ func TestGenerate(t *testing.T) {
 	l.Axiom = "F"
 	l.RuleLeft = "F"
 	l.RuleRight = "F+F"
-	y := l.Generate(2)
+	y := l.Generate()
 	if y != "F+F+F+F" {
 		t.Error("expected F+F", "got", y)
 	}

@@ -7,6 +7,7 @@ import (
 	"net/http"
 )
 
+//Lystem is a
 type Lsystem struct {
 	Axiom               string
 	RuleLeft, RuleRight string
@@ -15,7 +16,7 @@ type Lsystem struct {
 
 func main() {
 
-	l := ls.NewLsystem("F", "F", "FF+F", []string{})
+	l := ls.NewLsystem("F", "F", "FF+[+F-F-F]-[-F+F+F]", []string{})
 
 	http.Handle("/", l)
 	http.Handle("/create", create(l, l))
