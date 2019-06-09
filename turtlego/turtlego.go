@@ -1,7 +1,7 @@
 package turtlego
 
 import (
-	"code/lsystem-v4/ls"
+	"code/lsystem-v6/ls"
 	"fmt"
 	"image"
 	"image/color"
@@ -17,6 +17,7 @@ type TurtleGo struct {
 	Rotation float64
 	Color    color.Color
 	Draw     bool
+	Stack    []float64
 }
 
 type Position struct {
@@ -30,11 +31,23 @@ func NewTurtleGo(i *image.RGBA, start Position) (t *TurtleGo) {
 		Rotation: 0.0,
 		Color:    color.Gray{0xA9},
 		Draw:     true,
+		Stack:    []float64{},
 	}
-
 	return
 }
 
+//Push saves x,y coordinates and angle on stack
+func (t *TurtleGo) Push() {
+	t.Stack = append(t.Stack, t.Pos.X, t.Pos.Y, t.Rotation)
+}
+
+//Pop loads x,y coordinates and angle from stack
+func (t *TurtleGo) Pop() {
+	t.Pos = Position{t.Stack[0], t.Stack[1]}
+	t.Rotation = t.Stack[2]
+}
+
+//Forward moves forward
 func (t *TurtleGo) Forward(dist float64) {
 	for i := 0; i < int(dist); i++ {
 		if t.Draw {
@@ -48,16 +61,14 @@ func (t *TurtleGo) Forward(dist float64) {
 	}
 }
 
+//Backward moves backwards
 func (t *TurtleGo) Backward(dist float64) {
 	t.Forward(-dist)
 }
 
-func (t *TurtleGo) Right(radians float64) {
+//Rotate changes direction of next move by radians degrees
+func (t *TurtleGo) Rotate(radians float64) {
 	t.Rotation += radians
-}
-
-func (t *TurtleGo) Left(radians float64) {
-	t.Right(-radians)
 }
 
 func (t *TurtleGo) PenUp() {
@@ -68,25 +79,32 @@ func (t *TurtleGo) PenDown() {
 	t.Draw = true
 }
 
+//ToImage creates image of lsystem
 func ToImage(l *ls.Lsystem) image.Image {
 
 	image := image.NewRGBA(image.Rect(0, 0, 300, 300))
 	pos := Position{150.0, 150.0}
 	t := NewTurtleGo(image, pos)
-	// r := l.Result
+	r := l.Result[len(l.Result)-1]
 
-	// fmt.Println("enter toimage", r)
+	fmt.Println("enter toimage", r)
 
 	for i := 0; i < 2; i++ {
-		fields := strings.Fields("F F - F")
+		fields := strings.Split(r, "")
 		for j := 0; j < len(fields); j++ {
 			switch fields[j] {
 			case "F":
 				t.Forward(40.0)
 			case "+":
-				t.Right(math.Pi / 6)
+				t.Rotate(math.Pi / 6)
 			case "-":
-				t.Left(math.Pi / 6)
+				t.PenDown()
+				t.Rotate(-math.Pi / 6)
+			case "[":
+				t.Push()
+			case "]":
+				t.PenUp()
+				t.Pop()
 			default:
 				fmt.Println("unkown:" + fields[j])
 			}
