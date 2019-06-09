@@ -1,7 +1,7 @@
 package turtlego
 
 import (
-	"code/lsystem-v6-rechts/ls"
+	"code/lsystem-v6/ls"
 	"fmt"
 	"image"
 	"image/color"
@@ -31,20 +31,18 @@ func (t *TurtleGo) Push() {
 
 //Pop loads x,y coordinates and angle from stack
 func (t *TurtleGo) Pop() {
-	if len(t.Stack) <= 3 {
-		t.Pos = Position{t.Stack[0], t.Stack[1]}
-		t.Rotation = t.Stack[2]
-	} else {
-		t.Pos = Position{t.Stack[len(t.Stack)-3], t.Stack[len(t.Stack)-2]}
-		t.Rotation = t.Stack[len(t.Stack)-1]
-	}
+
+	t.Pos = Position{t.Stack[len(t.Stack)-3], t.Stack[len(t.Stack)-2]}
+	t.Rotation = t.Stack[len(t.Stack)-1]
+	t.Stack = t.Stack[0 : len(t.Stack)-3]
 }
 
 //Forward moves forward
 func (t *TurtleGo) Forward(dist float64) {
 	for i := 0; i < int(dist); i++ {
-
-		t.Image.Set(int(t.Pos.X), int(t.Pos.Y), t.Color)
+		if t.Draw {
+			t.Image.Set(int(t.Pos.X), int(t.Pos.Y), t.Color)
+		}
 
 		x := 1.0 * math.Sin(t.Rotation)
 		y := 1.0 * -math.Cos(t.Rotation)
@@ -87,8 +85,8 @@ func NewTurtleGo(i *image.RGBA, start Position) (t *TurtleGo) {
 //ToImage translates generated string into geometric structure and creates image of lsystem
 func ToImage(l *ls.Lsystem) image.Image {
 
-	image := image.NewRGBA(image.Rect(0, 0, 1000, 1000))
-	pos := Position{500.0, 1000.0}
+	image := image.NewRGBA(image.Rect(0, 0, 600, 600))
+	pos := Position{300.0, 600.0}
 	t := NewTurtleGo(image, pos)
 	r := l.Result[len(l.Result)-1]
 	d := 40.0
@@ -120,29 +118,15 @@ func ToImage(l *ls.Lsystem) image.Image {
 			}
 		}
 	}
-<<<<<<< HEAD
 	// fmt.Println("enter toimage", len(r), t.Stack)
-=======
-	fmt.Println("enter toimage", len(r), t.Stack)
->>>>>>> bf4fd123c17ac0235467aa53058f10ad826169b0
 
 	return image
 }
 
 //iteration 1
 //FF+[+F-F]-[-F+F]
-<<<<<<< HEAD
 //iteration2
 //FF+[+F-F-F]-[-F+F+F]FF+[+F-F-F]-[-F+F+F]+[+FF+[+F-F-F]-[-F+F+F]-FF+[+F-F-F]-[-F+F+F]-FF+[+F-F-F]-[-F+F+F]]-[-FF+[+F-F-F]-[-F+F+F]+FF+[+F-F-F]-[-F+F+F]+FF+[+F-F-F]-[-F+F+F]
-=======
-//my frontend
-//FF+[+F-F-F]-[-F+F+F]FF+[+F-F-F]-[-F+F+F]+[+FF+[+F-F-F]-[-F+F+F]-FF+[+F-F-F]-[-F+F+F]-FF+[+F-F-F]-[-F+F+F]]-[-FF+[+F-F-F]-[-F+F+F]+FF+[+F-F-F]-[-F+F+F]+FF+[+F-F-F]-[-F+F+F]
-//terminal
-//FF+[+F-F-F]-[-F+F+F]FF+[+F-F-F]-[-F+F+F]FF+[+F-F-F]-[-F+F+F]+[+FF+[+F-F-F]-[-F+F+F]-FF+[+F-F-F]-[-F+F+F]-FF+[+F-F-F]-[-F+F+F]]-[-FF+[+F-F-F]-[-F+F+F]+FF+[+F-F-F]-[-F+F+F]+FF+[+F-F-F]-[-F+F+F]]
-//js
-//FF+[+F-F-F]-[-F+F+F]FF+[+F-F-F]-[-F+F+F]+[+FF+[+F-F-F]-[-F+F+F]-FF+[+F-F-F]-[-F+F+F]-FF+[+F-F-F]-[-F+F+F]]-[-FF+[+F-F-F]-[-F+F+F]+FF+[+F-F-F]-[-F+F+F]+FF+[+F-F-F]-[-F+F+F]]
-//FF+[+F-F-F]-[-F+F+F]FF+[+F-F-F]-[-F+F+F]+[+FF+[+F-F-F]-[-F+F+F]-FF+[+F-F-F]-[-F+F+F]-FF+[+F-F-F]-[-F+F+F]]-[-FF+[+F-F-F]-[-F+F+F]+FF+[+F-F-F]-[-F+F+F]+FF+[+F-F-F]-[-F+F+F]]
->>>>>>> bf4fd123c17ac0235467aa53058f10ad826169b0
 
 //saveImage creates image file
 func saveImage(image image.Image, path string) {
