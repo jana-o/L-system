@@ -1,7 +1,7 @@
 package turtlego
 
 import (
-	"code/lsystem-v6/ls"
+	"code/lsystem-v6-rechts/ls"
 	"fmt"
 	"image"
 	"image/color"
@@ -43,9 +43,8 @@ func (t *TurtleGo) Pop() {
 //Forward moves forward
 func (t *TurtleGo) Forward(dist float64) {
 	for i := 0; i < int(dist); i++ {
-		if t.Draw {
-			t.Image.Set(int(t.Pos.X), int(t.Pos.Y), t.Color)
-		}
+
+		t.Image.Set(int(t.Pos.X), int(t.Pos.Y), t.Color)
 
 		x := 1.0 * math.Sin(t.Rotation)
 		y := 1.0 * -math.Cos(t.Rotation)
@@ -121,15 +120,29 @@ func ToImage(l *ls.Lsystem) image.Image {
 			}
 		}
 	}
+<<<<<<< HEAD
 	// fmt.Println("enter toimage", len(r), t.Stack)
+=======
+	fmt.Println("enter toimage", len(r), t.Stack)
+>>>>>>> bf4fd123c17ac0235467aa53058f10ad826169b0
 
 	return image
 }
 
 //iteration 1
 //FF+[+F-F]-[-F+F]
+<<<<<<< HEAD
 //iteration2
 //FF+[+F-F-F]-[-F+F+F]FF+[+F-F-F]-[-F+F+F]+[+FF+[+F-F-F]-[-F+F+F]-FF+[+F-F-F]-[-F+F+F]-FF+[+F-F-F]-[-F+F+F]]-[-FF+[+F-F-F]-[-F+F+F]+FF+[+F-F-F]-[-F+F+F]+FF+[+F-F-F]-[-F+F+F]
+=======
+//my frontend
+//FF+[+F-F-F]-[-F+F+F]FF+[+F-F-F]-[-F+F+F]+[+FF+[+F-F-F]-[-F+F+F]-FF+[+F-F-F]-[-F+F+F]-FF+[+F-F-F]-[-F+F+F]]-[-FF+[+F-F-F]-[-F+F+F]+FF+[+F-F-F]-[-F+F+F]+FF+[+F-F-F]-[-F+F+F]
+//terminal
+//FF+[+F-F-F]-[-F+F+F]FF+[+F-F-F]-[-F+F+F]FF+[+F-F-F]-[-F+F+F]+[+FF+[+F-F-F]-[-F+F+F]-FF+[+F-F-F]-[-F+F+F]-FF+[+F-F-F]-[-F+F+F]]-[-FF+[+F-F-F]-[-F+F+F]+FF+[+F-F-F]-[-F+F+F]+FF+[+F-F-F]-[-F+F+F]]
+//js
+//FF+[+F-F-F]-[-F+F+F]FF+[+F-F-F]-[-F+F+F]+[+FF+[+F-F-F]-[-F+F+F]-FF+[+F-F-F]-[-F+F+F]-FF+[+F-F-F]-[-F+F+F]]-[-FF+[+F-F-F]-[-F+F+F]+FF+[+F-F-F]-[-F+F+F]+FF+[+F-F-F]-[-F+F+F]]
+//FF+[+F-F-F]-[-F+F+F]FF+[+F-F-F]-[-F+F+F]+[+FF+[+F-F-F]-[-F+F+F]-FF+[+F-F-F]-[-F+F+F]-FF+[+F-F-F]-[-F+F+F]]-[-FF+[+F-F-F]-[-F+F+F]+FF+[+F-F-F]-[-F+F+F]+FF+[+F-F-F]-[-F+F+F]]
+>>>>>>> bf4fd123c17ac0235467aa53058f10ad826169b0
 
 //saveImage creates image file
 func saveImage(image image.Image, path string) {
