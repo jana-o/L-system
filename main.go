@@ -1,8 +1,8 @@
 package main
 
 import (
-	"code/lsystem-v6/ls"
-	"code/lsystem-v6/turtlego"
+	"code/lsystem-v6-rechts/ls"
+	"code/lsystem-v6-rechts/turtlego"
 	"log"
 	"net/http"
 )
