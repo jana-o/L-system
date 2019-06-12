@@ -1,55 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, shrink-to-fit=no"
-    />
-    <link
-      rel="stylesheet"
-      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
-      crossorigin="anonymous"
-    />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css?family=Abril+Fatface|Lato&display=swap"
-    />
-    <style>
-      body,
-      htlm {
-        font-family: "Lato", sans-serif;
-        height: 100%;
-      }
-      .bg {
-        background-image: url("/public/banana.svg");
-        height: 100%;
-        background-size: cover;
-      }
-      .bg-ls{
-        background-image: url("/public/pic/l-system.png");
-        height: 500px;
-        background-repeat: no-repeat;
-        background-position: center;
-        background-size: contain;
-      }
-      h1,
-      h4 {
-        font-family: "Abril Fatface", cursive;
-      }
-      p {
-        text-align: justify;
-        margin: 0;
-      }
-      ul {
-        list-style: none;
-      }
-    </style>
-    <title>L-System</title>
-  </head>
-  <body class="bg">
-    <main>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface|Lato&display=swap" />
+  <style>
+    body,
+    htlm {
+      font-family: "Lato", sans-serif;
+      height: 100%;
+    }
+
+    .bg {
+      background-image: url("/public/banana.svg");
+      height: 100%;
+      background-size: cover;
+    }
+
+    .bg-ls {
+      background-image: url("/public/pic/l-system{{.Index}}.png");
+      height: 500px;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: contain;
+    }
+
+    /* h1,
+    h4 {
+      font-family: "Abril Fatface", cursive;
+    } */
+
+    p {
+      text-align: justify;
+      margin: 0;
+    }
+
+    ul {
+      list-style: none;
+    }
+  </style>
+  <title>L-System</title>
+</head>
+
+<body class="bg">
+  <main>
     <div class="container mt-5 pt-5 pb-3 bg-white">
       <div class="text-center p-4">
         <h1>L-System</h1>
@@ -65,7 +62,8 @@
               make strings, an initial axiom string
               from which to begin, production rules that expand each
               symbol into some larger string of symbols, and a mechanism for translating the generated
-              strings into geometric structures. The recursive nature of the L-system rules leads to self-similarity and fractal-like forms. 
+              strings into geometric structures. The recursive nature of the L-system rules leads to self-similarity and
+              fractal-like forms.
               Hence, L-systems can be used to model
               the growth of plants or similar fractals.
             </p>
@@ -74,13 +72,7 @@
               <li>Axiom: {{.Axiom}}</li>
               <li>Rule: {{.RuleLeft}} &#8594 {{.RuleRight}}</li>
             </ul>
-            <a
-              href="create"
-              class="btn btn-light active"
-              role="button"
-              aria-pressed="true"
-              >create</a
-            >
+            <a href="create?n={{.Next}}" class="btn btn-light active" role="button" aria-pressed="true">create</a>
           </div>
         </div>
 
@@ -97,12 +89,8 @@
           {{ end }}
         </div>
       </div>
-    </div>    
+    </div>
   </main>
-    <script
-      src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-      crossorigin="anonymous"
-    ></script>
-  </body>
+</body>
+
 </html>

@@ -84,7 +84,7 @@ func ToImage(l *ls.Lsystem) image.Image {
 	pos := Position{250.0, 500.0}
 	t := NewTurtleGo(image, pos)
 	r := l.Result[len(l.Result)-1]
-	d := 40.0
+	d := 1.0 / float64(l.Index())
 
 	for i := 0; i < 1; i++ {
 		fields := strings.Split(r, "")
@@ -95,7 +95,7 @@ func ToImage(l *ls.Lsystem) image.Image {
 				switch fields[j] {
 				case "F":
 					t.PenDown()
-					t.Forward(d * 0.7)
+					t.Forward(40 * d)
 				case "+":
 					t.PenDown()
 					t.Rotate(math.Pi / 6)
@@ -116,11 +116,6 @@ func ToImage(l *ls.Lsystem) image.Image {
 	return image
 }
 
-//iteration 1
-//FF+[+F-F]-[-F+F]
-//iteration2
-//FF+[+F-F-F]-[-F+F+F]FF+[+F-F-F]-[-F+F+F]+[+FF+[+F-F-F]-[-F+F+F]-FF+[+F-F-F]-[-F+F+F]-FF+[+F-F-F]-[-F+F+F]]-[-FF+[+F-F-F]-[-F+F+F]+FF+[+F-F-F]-[-F+F+F]+FF+[+F-F-F]-[-F+F+F]
-
 //saveImage creates image file
 func saveImage(image image.Image, path string) {
 
@@ -138,3 +133,10 @@ func saveImage(image image.Image, path string) {
 func ToPNG(l *ls.Lsystem, path string) {
 	saveImage(ToImage(l), path)
 }
+
+//filename iteration save
+
+//iteration 1
+//FF+[+F-F]-[-F+F]
+//iteration2
+//FF+[+F-F-F]-[-F+F+F]FF+[+F-F-F]-[-F+F+F]+[+FF+[+F-F-F]-[-F+F+F]-FF+[+F-F-F]-[-F+F+F]-FF+[+F-F-F]-[-F+F+F]]-[-FF+[+F-F-F]-[-F+F+F]+FF+[+F-F-F]-[-F+F+F]+FF+[+F-F-F]-[-F+F+F]
