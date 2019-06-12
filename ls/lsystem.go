@@ -14,7 +14,7 @@ func init() {
 	tpl = template.Must(template.ParseGlob("templates/index.html"))
 }
 
-//Lsystem is
+//Lsystem is a parallel rewriting system
 type Lsystem struct {
 	Axiom               string
 	RuleLeft, RuleRight string
@@ -43,7 +43,7 @@ func (l *Lsystem) Generate() []string {
 
 	l.Result = append(l.Result, s)
 
-	fmt.Println("generate", l.Result, n)
+	fmt.Println("generate", l.Result[len(l.Result)-1], n)
 	return l.Result
 }
 
@@ -52,7 +52,6 @@ func (l *Lsystem) applyRule(r string) string {
 }
 
 func (l *Lsystem) ServeHTTP(w http.ResponseWriter, req *http.Request) {
-	// fmt.Println("Hi")
 	err := tpl.ExecuteTemplate(w, "index.html", l)
 	if err != nil {
 		http.Error(w, err.Error(), 500)

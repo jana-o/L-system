@@ -1,58 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, shrink-to-fit=no"
-    />
-    <link rel="stylesheet" href="main.css" />
-    <link
-      rel="stylesheet"
-      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
-      crossorigin="anonymous"
-    />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css?family=Abril+Fatface|Lato&display=swap"
-    />
-    <style>
-      body,
-      htlm {
-        font-family: "Lato", sans-serif;
-        height: 100%;
-      }
-      .bg {
-        background-image: url("/public/banana.svg");
-        height: 100%;
-        background-size: cover;
-      }
-      .bg-ls{
-        background-image: url("/public/pic/l-system.png");
-<<<<<<< HEAD
-        height: 100%;
-=======
-        height: 500px;
->>>>>>> 373034e4038f25f74411132b85c94558ff7f1809
-        background-repeat: no-repeat;
-        background-position: center;
-      }
-      h1,
-      h4 {
-        font-family: "Abril Fatface", cursive;
-      }
-      p {
-        text-align: justify;
-        margin: 0;
-      }
-      ul {
-        list-style: none;
-      }
-    </style>
-    <title>L-System</title>
-  </head>
-  <body class="bg">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface|Lato&display=swap" />
+  <style>
+    body,
+    htlm {
+      font-family: "Lato", sans-serif;
+      height: 100%;
+    }
+
+    .bg {
+      background-image: url("/public/banana.svg");
+      height: 100%;
+      background-size: cover;
+    }
+
+    .bg-ls {
+      background-image: url("/public/pic/l-system.png");
+      <<<<<<< HEAD height: 500px;
+      >>>>>>>89dff5ae7031921c1677232b93f31b53bbb905b0 background-repeat: no-repeat;
+      background-position: center;
+      background-size: contain;
+    }
+
+    h1,
+    h4 {
+      font-family: "Abril Fatface", cursive;
+    }
+
+    p {
+      text-align: justify;
+      margin: 0;
+    }
+
+    ul {
+      list-style: none;
+    }
+  </style>
+  <title>L-System</title>
+</head>
+
+<body class="bg">
+  <main>
     <div class="container mt-5 pt-5 pb-3 bg-white">
       <div class="text-center p-4">
         <h1>L-System</h1>
@@ -62,13 +56,15 @@
         <div class="col">
           <div class="mt-3 text-center">
             <p class="small">
-              An L-system or Lindenmayer system is a parallel rewriting system,
-              introduced in 1968 by Aristid Lindenmayer, a Hungarian botanist.
+              The Lindenmayer system (or L-system) is a parallel rewriting system,
+              introduced in 1968 by Hungarian botanist Aristid Lindenmayer.
               An L-system consists of an alphabet of symbols that can be used to
-              make strings, a collection of production rules that expand each
-              symbol into some larger string of symbols, an initial axiom string
-              from which to begin, and a mechanism for translating the generated
-              strings into geometric structures. L-systems can be used to model
+              make strings, an initial axiom string
+              from which to begin, production rules that expand each
+              symbol into some larger string of symbols, and a mechanism for translating the generated
+              strings into geometric structures. The recursive nature of the L-system rules leads to self-similarity and
+              fractal-like forms.
+              Hence, L-systems can be used to model
               the growth of plants or similar fractals.
             </p>
             <h4 class="mt-5">Create a fractal tree</h4>
@@ -76,20 +72,7 @@
               <li>Axiom: {{.Axiom}}</li>
               <li>Rule: {{.RuleLeft}} &#8594 {{.RuleRight}}</li>
             </ul>
-            <a
-              href="create"
-              class="btn btn-light active"
-              role="button"
-              aria-pressed="true"
-              >create</a
-            >
-          </div>
-
-          <div class="mt-5 mb-2">
-            <h4>Result</h4>
-            {{ range.Result }}
-            <p>{{.}}</p>
-            {{ end }}
+            <a href="create" class="btn btn-light active" role="button" aria-pressed="true">create</a>
           </div>
         </div>
 
@@ -98,13 +81,19 @@
           </div>
         </div>
       </div>
+      <div class="row">
+        <div class="col">
+          <h4>Result</h4>
+          {{ range.Result }}
+          <p>{{.}}</p>
+          {{ end }}
+        </div>
+      </div>
     </div>
+  </main>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
+</body>
 
-    <script
-      src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-      crossorigin="anonymous"
-    ></script>
-  </body>
 </html>
-<!-- The recursive nature of the L-system rules leads to self-similarity and thereby fractal-like forms which are easy to describe with an L-system. Plant models and natural-looking organic forms 'grow' and becomes more complex by increasing the iteration level of the form. -->
