@@ -51,11 +51,6 @@ func (t *TurtleGo) Forward(dist float64) {
 	}
 }
 
-//Backward moves backwards
-func (t *TurtleGo) Backward(dist float64) {
-	t.Forward(-dist)
-}
-
 //Rotate changes direction of next move by radians degrees
 func (t *TurtleGo) Rotate(radians float64) {
 	t.Rotation += radians
@@ -85,8 +80,8 @@ func NewTurtleGo(i *image.RGBA, start Position) (t *TurtleGo) {
 //ToImage translates generated string into geometric structure and creates image of lsystem
 func ToImage(l *ls.Lsystem) image.Image {
 
-	image := image.NewRGBA(image.Rect(0, 0, 600, 600))
-	pos := Position{300.0, 600.0}
+	image := image.NewRGBA(image.Rect(0, 0, 500, 500))
+	pos := Position{250.0, 500.0}
 	t := NewTurtleGo(image, pos)
 	r := l.Result[len(l.Result)-1]
 	d := 40.0
@@ -118,8 +113,6 @@ func ToImage(l *ls.Lsystem) image.Image {
 			}
 		}
 	}
-	// fmt.Println("enter toimage", len(r), t.Stack)
-
 	return image
 }
 

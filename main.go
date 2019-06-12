@@ -24,5 +24,3 @@ func create(h http.Handler, l *ls.Lsystem) http.Handler {
 		l.ServeHTTP(w, req)
 	})
 }
-
-//FF+[+F-F-F]-[-F+F+F]
