@@ -2,7 +2,6 @@
 package ls
 
 import (
-	"fmt"
 	"html/template"
 	"net/http"
 	"strings"
@@ -14,7 +13,7 @@ func init() {
 	tpl = template.Must(template.ParseGlob("templates/index.html"))
 }
 
-//Lsystem is
+//Lsystem is a parallel rewriting system
 type Lsystem struct {
 	Axiom               string
 	RuleLeft, RuleRight string
@@ -32,18 +31,23 @@ func NewLsystem(Axiom, RuleLeft, RuleRight string, Result []string) *Lsystem {
 	return l
 }
 
+func (l *Lsystem) Index() int {
+	return len(l.Result)
+}
+func (l *Lsystem) Next() int {
+	return len(l.Result) + 1
+}
+
 //Generate applies L-system rule n times
-func (l *Lsystem) Generate() []string {
+func (l *Lsystem) Generate(n int) []string {
 	s := l.Axiom
-	n := len(l.Result) + 1
+	// n := len(l.Result) + 1
 
 	for i := 0; i < n; i++ {
 		s = l.applyRule(s)
+		l.Result = append(l.Result, s)
 	}
 
-	l.Result = append(l.Result, s)
-
-	fmt.Println("generate", l.Result, n)
 	return l.Result
 }
 
@@ -52,7 +56,6 @@ func (l *Lsystem) applyRule(r string) string {
 }
 
 func (l *Lsystem) ServeHTTP(w http.ResponseWriter, req *http.Request) {
-	// fmt.Println("Hi")
 	err := tpl.ExecuteTemplate(w, "index.html", l)
 	if err != nil {
 		http.Error(w, err.Error(), 500)

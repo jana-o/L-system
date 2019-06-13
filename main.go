@@ -3,32 +3,35 @@ package main
 import (
 	"code/lsystem-v6/ls"
 	"code/lsystem-v6/turtlego"
+	"fmt"
 	"log"
 	"net/http"
+	"strconv"
 )
-
-type Lsystem struct {
-	Axiom               string
-	RuleLeft, RuleRight string
-	Result              []string
-}
 
 func main() {
 
-	l := ls.NewLsystem("F", "F", "FF+F", []string{})
+	l := ls.NewLsystem("F", "F", "FF+[+F-F-F]-[-F+F+F]", []string{})
 
 	http.Handle("/", l)
-	http.Handle("/create", create(l, l))
+	http.Handle("/create", create())
 	http.Handle("/public/", http.StripPrefix("/public", http.FileServer(http.Dir("public"))))
 	log.Fatal(http.ListenAndServe(":8080", nil))
 }
 
-func create(h http.Handler, l *ls.Lsystem) http.Handler {
+func create() http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, req *http.Request) {
-		l.Generate()
-		turtlego.ToPNG(l, "./public/pic/l-system.png")
+		l := ls.NewLsystem("F", "F", "FF+[+F-F-F]-[-F+F+F]", []string{})
+
+		err := req.ParseForm()
+		if err != nil {
+			panic(err)
+		}
+		n := req.Form.Get("n")
+		i, err := strconv.Atoi(n)
+
+		l.Generate(i)
+		turtlego.ToPNG(l, fmt.Sprintf("./public/pic/l-system%d.png", i))
 		l.ServeHTTP(w, req)
 	})
 }
-
-//FF+[+F-F-F]-[-F+F+F]
