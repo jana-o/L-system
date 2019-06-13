@@ -84,6 +84,7 @@ func ToImage(l *ls.Lsystem) image.Image {
 	pos := Position{250.0, 500.0}
 	t := NewTurtleGo(image, pos)
 	r := l.Result[len(l.Result)-1]
+	//shrink distance to make image fit
 	d := 1.0 / float64(l.Index())
 
 	for i := 0; i < 1; i++ {
